@@ -1,0 +1,2 @@
+rootProject.name = "DTUGO"
+include ':app'
