@@ -10,22 +10,22 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logo"
+            android:layout_width="342dp"
+            android:layout_height="428dp"
+            android:layout_marginTop="-40dp"
             android:padding="30dp"
-            android:layout_marginTop="-40dp"/>
+            android:src="@drawable/logo" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Touch anywhere to continue..."
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="-30dp"/>
+            android:layout_marginTop="-30dp"
+            android:text="Touch anywhere to start your journey in DTU Campus..." />
 
     </LinearLayout>
 </RelativeLayout>
