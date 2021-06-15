@@ -1,6 +1,8 @@
 package com.example.dtugo;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
 import android.os.Bundle;
 
 public class MapActivity extends AppCompatActivity {
@@ -9,5 +11,14 @@ public class MapActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
+        //Initialize fragment
+        Fragment fragment = new MapFragment();
+
+        //open fragment
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container,fragment)
+                .commit();
     }
 }
