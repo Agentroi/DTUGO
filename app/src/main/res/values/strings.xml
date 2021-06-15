@@ -2,6 +2,10 @@
     <string name="app_name">DTUGO</string>
     <string name="title">Title</string>
     <string name="infoText">infoText</string>
+    <string name="reset">Reset</string>
+    <string name="image">image</string>
+    <string name="button">Button</string>
+    <string name="_0">0</string>
 
     <string-array name="titles">
         <item>Biblioteket</item>
