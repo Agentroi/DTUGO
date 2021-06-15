@@ -1,9 +1,23 @@
 <resources>
     <string name="app_name">DTUGO</string>
+    <string name="title">Title</string>
+    <string name="infoText">infoText</string>
 
     <string-array name="POI">
         <item>Option 1</item>
         <item>Option 2</item>
         <item>Option 3</item>
+    </string-array>
+
+    <string-array name="titles">
+        <item>Title 1</item>
+        <item>Title 2</item>
+        <item>Title 3</item>
+    </string-array>
+
+    <string-array name="infoTexts">
+        <item>Info 1</item>
+        <item>Info 2</item>
+        <item>Info 3</item>
     </string-array>
 </resources>
