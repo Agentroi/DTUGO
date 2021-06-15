@@ -1,9 +1,13 @@
 package com.example.dtugo;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +39,16 @@ public class MapFragment extends Fragment {
                 restrictArea(googleMap);
 
                 //Point of interest for DTU LIBRARY
-                addMarker("DTU Library",55.786741, 12.523164 );
+                addMarker("DTU Library", 55.786741, 12.523164);
+
+                //S-Huset
+                addMarker("S-Huset",55.7865393,12.5253112);
+
+                //Skylab
+                addMarker("SkyLab", 55.7814779,12.5112552);
+
+                //Netto
+                addMarker("Netto", 55.783832,12.5219749);
 
 
             }
@@ -45,11 +58,11 @@ public class MapFragment extends Fragment {
         return view;
     }
 
-    private void restrictArea(GoogleMap googleMap){
+    private void restrictArea(GoogleMap googleMap) {
         mMap = googleMap;
         //When map is loaded
-        LatLng one = new LatLng(55.782717, 12.519098);
-        LatLng two = new LatLng(55.789231, 12.523211);
+        LatLng one = new LatLng(55.781627, 12.511186);
+        LatLng two = new LatLng(55.791887, 12.528041);
 
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
@@ -64,7 +77,7 @@ public class MapFragment extends Fragment {
         int height = getResources().getDisplayMetrics().heightPixels;
 
         //padding
-        int padding = (int) (width * 0.20);
+        int padding = (int) (width * 0.10);
 
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
@@ -78,8 +91,16 @@ public class MapFragment extends Fragment {
         mMap.setMinZoomPreference(mMap.getCameraPosition().zoom);
 
 
+        //We check for permissions
+        if (ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+        }
+        mMap.setMyLocationEnabled(true);
+
     }
 
+    //Method for adding markers.
     private void addMarker(String title ,double v1, double v2){
         mMap.addMarker(new MarkerOptions().position(new LatLng(v1,v2)).title(title));
     }
