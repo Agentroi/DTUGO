@@ -3,21 +3,22 @@
     <string name="title">Title</string>
     <string name="infoText">infoText</string>
 
-    <string-array name="POI">
-        <item>Option 1</item>
-        <item>Option 2</item>
-        <item>Option 3</item>
-    </string-array>
-
     <string-array name="titles">
-        <item>Title 1</item>
-        <item>Title 2</item>
-        <item>Title 3</item>
+        <item>Biblioteket</item>
+        <item>S-huset</item>
+        <item>Netto</item>
+        <item>Skylab</item>
     </string-array>
 
     <string-array name="infoTexts">
-        <item>Info 1</item>
-        <item>Info 2</item>
-        <item>Info 3</item>
+        <item>DTU Bibliotek er et førende brugerorienteret og innovativt forskningsbibliotek, som understøtter DTU’s forskning, uddannelse og samarbejde.\n\nBiblioteket er et centralt mødested for os studerende til gruppearbejde, lektier og selvstudie. Biblioteket tilbyder også et utal tjenester, heriblandt 3d-print, værktøjer til indbinding og videnskabeligt materiale til forskning.
+        </item>
+        <item>S-huset er fællesbetegnelsen for PF’s studenterhus. S-huset arrangerer nogle af de største fællesarrangementer for studerende på DTU, priserne er altid studentervenlige og til dagligt er S-huset et hyggeligt også mødested for studerende at mødes.
+            \n\nNedenunder S-huset ligger den legendariske Kælderbar. Kælderbaren har åbent mandag til fredag fra kl.19 og serverer et lækkert udvalg af specialøl og drinks, god musik og glade mennesker.
+        </item>
+        <item>Den lokale Netto ligger på det nordvestlige hjørne af Kampsax kollegiet. Det er her de studerende på DTU tanker op med læske og pølsehorn. \n\nFun fact: Netto på DTU er den Netto i landet som sælger absolut flest pølsehorn. \n\nVores teori: Netto på DTU er også den Netto i landet som sælger flest lunkne Harboe.
+        </item>
+        <item> Skylab er DTU’s nyeste og mest visionære projekt. På DTU Skylab bliver innovation og nytænkning sat i fokus. Gennem en spændende kombination af teknologier og talenter fra de forskellige felter på DTU, skabes en særlig kultur af læring og nytænkning for alle involverede.
+        </item>
     </string-array>
 </resources>

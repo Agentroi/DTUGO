@@ -23,7 +23,6 @@ public class ListFragment extends Fragment {
     private Dialog informationWindow;
     private TextView title;
     private TextView info;
-    private String[] POI;
     private String[] titles;
     private String[] infoTexts;
 
@@ -31,7 +30,6 @@ public class ListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
 
-        POI = getResources().getStringArray(R.array.POI);
         titles = getResources().getStringArray(R.array.titles);
         infoTexts = getResources().getStringArray(R.array.infoTexts);
 
@@ -43,7 +41,7 @@ public class ListFragment extends Fragment {
         ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
-                POI
+                titles
         );
 
         listView.setAdapter(listViewAdapter);
