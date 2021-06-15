@@ -16,18 +16,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListFragment extends Fragment {
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
-
-        String[] POI = {"Option1", "Option2", "Option3"};
 
         ListView listView = view.findViewById(R.id.list);
 
         ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
-                POI
+                getResources().getStringArray(R.array.POI)
         );
 
         listView.setAdapter(listViewAdapter);
