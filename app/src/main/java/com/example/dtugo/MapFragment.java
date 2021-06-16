@@ -171,9 +171,9 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
 
         //Check if current location is 100 m away from marker
         if(myLocation.distanceTo(markerLoc) < 100){
-            Toast.makeText(getActivity().getApplicationContext(), "U're good", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity().getApplicationContext(), "Du er klar til en udfordring!", Toast.LENGTH_LONG).show();
         }else{
-            Toast.makeText(getActivity().getApplicationContext(), "Get closer", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity().getApplicationContext(), "Du skal gå tættere på til en marker for at starte en udfordring!", Toast.LENGTH_LONG).show();
         }
         return true;
     }

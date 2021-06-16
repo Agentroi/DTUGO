@@ -25,6 +25,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="-30dp"
-            android:text="Touch anywhere to start your journey in DTU Campus..." />
+            android:text="Tryk hvor som helst for at starte din rejse på DTU's campus..." />
     </LinearLayout>
 </RelativeLayout>
