@@ -157,14 +157,20 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
 
     @Override
     public boolean onMarkerClick(Marker marker){
+        //Show marker information
+        marker.showInfoWindow();
+
+        //Get latitude-longitude from the marker
         double markerLat = marker.getPosition().latitude;
         double markerLong = marker.getPosition().longitude;
 
+        //Create new location for marker
         Location markerLoc = new Location(LocationManager.GPS_PROVIDER);
         markerLoc.setLatitude(markerLat);
         markerLoc.setLongitude(markerLong);
 
-        if(myLocation.distanceTo(markerLoc) < 50){
+        //Check if current location is 100 m away from marker
+        if(myLocation.distanceTo(markerLoc) < 100){
             Toast.makeText(getActivity().getApplicationContext(), "U're good", Toast.LENGTH_LONG).show();
         }else{
             Toast.makeText(getActivity().getApplicationContext(), "Get closer", Toast.LENGTH_LONG).show();
