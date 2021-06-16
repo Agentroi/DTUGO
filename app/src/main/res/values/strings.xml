@@ -25,4 +25,8 @@
         <item> Skylab er DTU’s nyeste og mest visionære projekt. På DTU Skylab bliver innovation og nytænkning sat i fokus. Gennem en spændende kombination af teknologier og talenter fra de forskellige felter på DTU, skabes en særlig kultur af læring og nytænkning for alle involverede.
         </item>
     </string-array>
+
+    <string name="challenge_title">Challenge_title</string>
+    <string name="location_title">Location_title</string>
+    <string name="result_title">Wow! you managed:</string>
 </resources>
