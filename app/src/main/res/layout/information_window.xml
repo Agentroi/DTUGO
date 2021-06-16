@@ -15,14 +15,29 @@
         android:layout_weight="1"
         android:background="@color/red"/>
 
+
+    <ScrollView
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="5">
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:orientation="vertical"
+            android:scrollbars="vertical"
+            android:scrollbarAlwaysDrawVerticalTrack="true">
     <TextView
         android:id="@+id/infoTextView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginHorizontal="10dp"
+        android:layout_height="match_parent"
+
         android:gravity="top"
         android:text="@string/infoText"
-        android:layout_weight="5"
         android:textSize="20sp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>
