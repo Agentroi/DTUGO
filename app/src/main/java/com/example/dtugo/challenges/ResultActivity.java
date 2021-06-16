@@ -1,4 +1,4 @@
-package com.example.dtugo;
+package com.example.dtugo.challenges;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.dtugo.R;
+import com.example.dtugo.challenges.ChallengeTemplate;
 
 public class ResultActivity extends AppCompatActivity {
 

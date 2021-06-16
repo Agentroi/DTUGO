@@ -1,4 +1,4 @@
-package com.example.dtugo;
+package com.example.dtugo.challenges;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.dtugo.R;
 
 public class ChallengeTemplate extends AppCompatActivity {
     private boolean counterIsRunning = false;
