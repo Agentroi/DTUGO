@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void proceed(View view){
-        Intent intent = new Intent(MainActivity.this, GiroTest.class);
+        Intent intent = new Intent(MainActivity.this, MapActivity.class);
         startActivity(intent);
     }
 }
