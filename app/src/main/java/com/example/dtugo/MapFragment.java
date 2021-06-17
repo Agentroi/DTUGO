@@ -30,6 +30,7 @@ import android.widget.Toast;
 import com.example.dtugo.challenges.ChallengeTemplate;
 import com.example.dtugo.challenges.RunActivity;
 import com.example.dtugo.challenges.ResultActivity;
+import com.example.dtugo.challenges.SpinningChallenge;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -201,58 +202,40 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
 
         if(marker.getTitle().equals("Biblioteket")){
             position = 0;
-            intent = new Intent(getActivity(), ChallengeTemplate.class);
+            intent = new Intent(getActivity(), SpinningChallenge.class);
 
         } else if(marker.getTitle().equals("S-Huset")){
             position = 1;
             intent = new Intent(getActivity(), ChallengeTemplate.class);
 
-        } else if(marker.getTitle().equals("Netto")){
+        } else if(marker.getTitle().equals("Netto")) {
             position = 2;
-            intent = new Intent(getActivity(), ChallengeTemplate.class);
-            title.setText(titles[position]);
-            info.setText(infoTexts[position]);
-
-            startChallengeButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(myLocation.distanceTo(markerLoc) < 100000){
-                        Intent intent = new Intent(getActivity(), RunActivity.class);
-                        startActivity(intent);
-                        informationWindow.dismiss();
-
+            intent = new Intent(getActivity(), RunActivity.class);
         } else if(marker.getTitle().equals("SkyLab")) {
             position = 3;
             intent = new Intent(getActivity(), ChallengeTemplate.class);
         }
-        title.setText(titles[position]);
-        info.setText(infoTexts[position]);
+            title.setText(titles[position]);
+            info.setText(infoTexts[position]);
 
-        Intent finalIntent = intent;
-        startChallengeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(myLocation.distanceTo(markerLoc) < 10000000){
-                    startActivity(finalIntent);
-                    informationWindow.dismiss();
+            Intent finalIntent = intent;
+            startChallengeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                        public void onClick(View v) {
+                            if (myLocation.distanceTo(markerLoc) < 10000000) {
+                                startActivity(finalIntent);
+                                informationWindow.dismiss();
 
-                }else {
-                    Toast.makeText(getActivity().getApplicationContext(), "Du skal gå tættere på en markør for at starte en udfordring!", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+                            } else {
+                                Toast.makeText(getActivity().getApplicationContext(), "Du skal gå tættere på en markør for at starte en udfordring!", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
 
-        informationWindow.show();
-
-
-        //Check if current location is 100 m away from marker
-//        if(myLocation.distanceTo(markerLoc) < 100){
-//            Toast.makeText(getActivity().getApplicationContext(), "Du er klar til en udfordring!", Toast.LENGTH_LONG).show();
-//        }else{
-//            Toast.makeText(getActivity().getApplicationContext(), "Du skal gå tættere på en markør for at starte en udfordring!", Toast.LENGTH_LONG).show();
-//        }
+                    informationWindow.show();
         return true;
     }
+
 
     private Button createChallengeButton() {
         Button startChallengeButton = new Button(getActivity());
@@ -271,3 +254,5 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
     }
 
 }
+
+

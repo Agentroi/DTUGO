@@ -28,6 +28,7 @@ public class RunActivity extends AppCompatActivity {
     private LocationListener locationListener;
     LocationManager locationManager;
     private double distance;
+    private CountDownTimer challengeCounter;
 
 
     @Override
@@ -78,7 +79,7 @@ public class RunActivity extends AppCompatActivity {
 
                 onResume();
 
-                new CountDownTimer(10000, 1000) {
+                challengeCounter = new CountDownTimer(5000, 1000) {
 
                     public void onTick(long millisUntilFinished) {
                         counterButton.setText("" + millisUntilFinished / 1000);
@@ -127,7 +128,9 @@ public class RunActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        moveTaskToBack(true);
+        moveTaskToBack(false);
+        challengeCounter.cancel();
+        finish();
     }
 
     @Override

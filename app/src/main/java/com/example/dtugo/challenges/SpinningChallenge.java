@@ -38,6 +38,8 @@ public class SpinningChallenge extends AppCompatActivity {
     private SensorEventListener sensorEventListenerAccelerometer;
     private SensorEventListener sensorEventListenerMagneticField;
 
+    private CountDownTimer challengeCounter;
+
         @Override
         protected void onCreate (Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -77,7 +79,7 @@ public class SpinningChallenge extends AppCompatActivity {
 
                 onResume();
 
-                new CountDownTimer(5000, 1000) {
+                challengeCounter = new CountDownTimer(5000, 1000) {
 
                     public void onTick(long millisUntilFinished) {
                         counterButton.setText("" + millisUntilFinished / 1000);
@@ -179,7 +181,9 @@ public class SpinningChallenge extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        moveTaskToBack(true);
+        moveTaskToBack(false);
+        challengeCounter.cancel();
+        finish();
     }
 
 
