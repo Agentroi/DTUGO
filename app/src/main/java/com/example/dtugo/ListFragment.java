@@ -58,14 +58,7 @@ public class ListFragment extends Fragment {
                 info.setText(infoTexts[position]);
                 informationWindow.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 informationWindow.show();
-//                Button closeButton;
-//                closeButton = (Button) informationWindow.findViewById(closeButton);
-//                closeButton.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        informationWindow.dismiss();
-//                    }
-//                });
+
             }
         });
 
