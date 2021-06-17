@@ -30,5 +30,6 @@ public class MapActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.fragment_container,fragment)
                 .commit();
+
     }
 }
