@@ -182,6 +182,7 @@ public class SpinningChallenge extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         moveTaskToBack(false);
+
         if(challengeCounter != null) {
             challengeCounter.cancel();
         }
@@ -195,7 +196,7 @@ public class SpinningChallenge extends AppCompatActivity {
         super.onPause();
         //Unregister your sensorListener here
         counterIsRunning = false;
-        sensorManager.unregisterListener(sensorEventListenerAccelerometer,sensorAccelerometer);
-        sensorManager.unregisterListener(sensorEventListenerMagneticField,sensorMagneticField);
+        //sensorManager.unregisterListener(sensorEventListenerAccelerometer,sensorAccelerometer);
+        //sensorManager.unregisterListener(sensorEventListenerMagneticField,sensorMagneticField);
     }
 }
