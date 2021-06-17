@@ -2,6 +2,7 @@ package com.example.dtugo;
 
 import android.app.Dialog;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -19,6 +20,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.dtugo.challenges.SpinningChallenge;
 
 public class ListFragment extends Fragment {
     private Dialog informationWindow;
@@ -63,7 +66,7 @@ public class ListFragment extends Fragment {
                 testButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(), SpinningGame.class);
+                        Intent intent = new Intent(getActivity(), SpinningChallenge.class);
                         startActivity(intent);
                     }
                 });
