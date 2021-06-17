@@ -87,7 +87,7 @@ public class RunActivity extends AppCompatActivity {
 
                     public void onFinish() {
                         distance = myStartLocation.distanceTo(myCurrentLocation);
-                        String result = "" + distance;
+                        String result = "" + (int) distance + " meter!";
 
                         //counterButton.setText("done!");
                         Intent intent = new Intent(RunActivity.this, ResultActivity.class);
