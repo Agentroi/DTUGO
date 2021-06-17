@@ -29,4 +29,5 @@
     <string name="challenge_title">Challenge_title</string>
     <string name="location_title">Location_title</string>
     <string name="result_title">Wow! you managed:</string>
+    <string name="location_titleGforce">S-Huset</string>
 </resources>

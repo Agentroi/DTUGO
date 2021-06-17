@@ -28,7 +28,9 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Toast;
 
 import com.example.dtugo.challenges.ChallengeTemplate;
+import com.example.dtugo.challenges.GforceChallenge;
 import com.example.dtugo.challenges.ResultActivity;
+import com.example.dtugo.challenges.StepCounterChallenge;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -204,7 +206,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
 
         } else if(marker.getTitle().equals("S-Huset")){
             position = 1;
-            intent = new Intent(getActivity(), ChallengeTemplate.class);
+            intent = new Intent(getActivity(), GforceChallenge.class);
 
         } else if(marker.getTitle().equals("Netto")){
             position = 2;
@@ -212,7 +214,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
 
         } else if(marker.getTitle().equals("SkyLab")) {
             position = 3;
-            intent = new Intent(getActivity(), ChallengeTemplate.class);
+            intent = new Intent(getActivity(), StepCounterChallenge.class);
         }
         title.setText(titles[position]);
         info.setText(infoTexts[position]);
@@ -221,7 +223,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
         startChallengeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(myLocation.distanceTo(markerLoc) < 100){
+                if(myLocation.distanceTo(markerLoc) < 1000000000){
                     startActivity(finalIntent);
                     informationWindow.dismiss();
 
