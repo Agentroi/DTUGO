@@ -1,7 +1,7 @@
 package com.example.dtugo;
 
 import android.app.Dialog;
-import android.app.ListActivity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -15,10 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ListFragment extends Fragment {
     private Dialog informationWindow;
@@ -58,14 +54,15 @@ public class ListFragment extends Fragment {
                 info.setText(infoTexts[position]);
                 informationWindow.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 informationWindow.show();
-//                Button closeButton;
-//                closeButton = (Button) informationWindow.findViewById(closeButton);
-//                closeButton.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        informationWindow.dismiss();
-//                    }
-//                });
+                Button testButton;
+                testButton = (Button) informationWindow.findViewById(R.id.resetButton);
+                testButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getActivity(), SpinningGame.class);
+                        startActivity(intent);
+                    }
+                });
             }
         });
 
