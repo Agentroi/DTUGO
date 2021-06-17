@@ -2,6 +2,7 @@ package com.example.dtugo.challenges;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -46,7 +47,7 @@ public class GforceChallenge extends AppCompatActivity implements SensorEventLis
                 counterButton.setEnabled(false);
 
 
-                new CountDownTimer(30000, 1000) {
+                new CountDownTimer(3000, 1000) {
 
                     public void onTick(long millisUntilFinished) {
 
@@ -54,7 +55,12 @@ public class GforceChallenge extends AppCompatActivity implements SensorEventLis
                     }
 
                     public void onFinish() {
-                        onPause();
+                        Intent intent = new Intent(GforceChallenge.this, ResultActivity.class);
+
+                        //Add sensor data in the putExtra method's value field
+                        intent.putExtra("result_key", "sensor_data: "+ GforceCounter);
+                        //counterIsRunning = false;
+                        startActivity(intent);
 
                     }
 
