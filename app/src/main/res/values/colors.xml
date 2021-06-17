@@ -8,5 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="weird_white">#FFFEF7</color>
+    <color name="background_weird_white">#80FEF7</color>
     <color name="red">#D31B1B</color>
 </resources>

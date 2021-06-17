@@ -2,6 +2,7 @@ package com.example.dtugo;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -28,6 +29,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Toast;
 
 import com.example.dtugo.challenges.ChallengeTemplate;
+import com.example.dtugo.challenges.RunActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -108,7 +110,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
                 //Skylab
                 addMarker("SkyLab", 55.7814779,12.5112552);
                 //Netto
-                addMarker("Netto", 55.783832,12.5219749);
+                addMarker("Netto", 55.783776, 12.524045);
 
                 mMap.setOnMarkerClickListener(MapFragment.this::onMarkerClick);
             }
@@ -253,8 +255,8 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
             startChallengeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(myLocation.distanceTo(markerLoc) < 100){
-                        Intent intent = new Intent(getActivity(), ChallengeTemplate.class);
+                    if(myLocation.distanceTo(markerLoc) < 100000){
+                        Intent intent = new Intent(getActivity(), RunActivity.class);
                         startActivity(intent);
                         informationWindow.dismiss();
 

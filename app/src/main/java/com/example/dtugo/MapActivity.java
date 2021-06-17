@@ -37,7 +37,6 @@ public class MapActivity extends AppCompatActivity {
                 .commit();
 
     }
-
     @Override
     public void onBackPressed() {
         moveTaskToBack(true);
