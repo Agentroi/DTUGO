@@ -32,6 +32,12 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        moveTaskToBack(true);
+    }
+
     public void proceed(View view){
         Intent intent = new Intent(MainActivity.this, MapActivity.class);
         startActivity(intent);
