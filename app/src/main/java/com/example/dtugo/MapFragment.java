@@ -71,7 +71,6 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
         }
 
-
         //Init myLocation
         myLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
@@ -101,10 +100,15 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
         return view;
     }
 
-    @SuppressLint("MissingPermission")
     @Override
     public void onResume(){
         super.onResume();
+
+        //We check for permissions
+        if (ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+        }
         if (null != locationManager.getProvider(LocationManager.GPS_PROVIDER)){
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, POLLING_FREQ, MIN_DISTANCE, locationListener);
         }
