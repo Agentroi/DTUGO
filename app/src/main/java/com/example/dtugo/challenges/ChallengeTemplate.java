@@ -19,6 +19,11 @@ public class ChallengeTemplate extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             getSupportActionBar().hide(); //hide the title bar
             setContentView(R.layout.activity_challengetemplate);
+
+            if (getIntent().getBooleanExtra("EXIT", false)) {
+                finish();
+            }
+
             addListenerOnButton();
         }
 

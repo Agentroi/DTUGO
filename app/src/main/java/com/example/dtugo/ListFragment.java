@@ -51,8 +51,6 @@ public class ListFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-
-
                 informationWindow.setContentView(R.layout.information_window);
                 title = (TextView) informationWindow.findViewById(R.id.titleTextView);
                 info = (TextView) informationWindow.findViewById(R.id.infoTextView);
