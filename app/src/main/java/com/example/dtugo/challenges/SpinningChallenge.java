@@ -182,7 +182,9 @@ public class SpinningChallenge extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         moveTaskToBack(false);
-        challengeCounter.cancel();
+        if(challengeCounter != null) {
+            challengeCounter.cancel();
+        }
         finish();
     }
 
