@@ -3,20 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:background="@color/red">
+    android:background="@color/white">
 
     <Button
         android:id="@+id/toMapButton"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_margin="7dp"
+        android:layout_marginLeft="3.5dp"
         android:layout_weight="1"
-        android:text="Map View" />
+        android:text="Map View"
+        android:background="@color/red"
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/toListButton"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_margin="7dp"
+        android:layout_marginLeft="3.5dp"
         android:layout_weight="1"
-        android:text="List View" />
+        android:text="List View"
+        android:background="@color/red"
+        android:textColor="@color/white"/>
 
 </LinearLayout>

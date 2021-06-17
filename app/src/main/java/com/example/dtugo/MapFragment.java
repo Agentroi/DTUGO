@@ -2,7 +2,6 @@ package com.example.dtugo;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -30,6 +29,7 @@ import android.widget.Toast;
 
 import com.example.dtugo.challenges.ChallengeTemplate;
 import com.example.dtugo.challenges.RunActivity;
+import com.example.dtugo.challenges.ResultActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -193,62 +193,23 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
         markerLoc.setLatitude(markerLat);
         markerLoc.setLongitude(markerLong);
 
-        int position;
-        informationWindow.setContentView(R.layout.information_window);
-        title = (TextView) informationWindow.findViewById(R.id.titleTextView);
-        info = (TextView) informationWindow.findViewById(R.id.infoTextView);
-        informationWindow.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        Button startChallengeButton = new Button(getActivity());
-        startChallengeButton.setText("Start udfordringen!");
-        LinearLayout linearLayout = (LinearLayout) informationWindow.findViewById(R.id.generalLinearLayout);
-        LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-        linearLayout.addView(startChallengeButton, params);
+        int position = 0;
+        Intent intent = new Intent(getActivity(), MapActivity.class);;
+
+        setupPopup();
+        Button startChallengeButton = createChallengeButton();
 
         if(marker.getTitle().equals("Biblioteket")){
             position = 0;
-            title.setText(titles[position]);
-            info.setText(infoTexts[position]);
-
-            startChallengeButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(myLocation.distanceTo(markerLoc) < 100){
-                        Intent intent = new Intent(getActivity(), ChallengeTemplate.class);
-                        startActivity(intent);
-                        informationWindow.dismiss();
-
-                    }else {
-                        Toast.makeText(getActivity().getApplicationContext(), "Du skal gå tættere på en markør for at starte en udfordring!", Toast.LENGTH_LONG).show();
-                    }
-                }
-            });
-
-
-            informationWindow.show();
+            intent = new Intent(getActivity(), ChallengeTemplate.class);
 
         } else if(marker.getTitle().equals("S-Huset")){
             position = 1;
-            title.setText(titles[position]);
-            info.setText(infoTexts[position]);
+            intent = new Intent(getActivity(), ChallengeTemplate.class);
 
-            startChallengeButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(myLocation.distanceTo(markerLoc) < 100){
-                        Intent intent = new Intent(getActivity(), ChallengeTemplate.class);
-                        startActivity(intent);
-                        informationWindow.dismiss();
-
-                    }else {
-                        Toast.makeText(getActivity().getApplicationContext(), "Du skal gå tættere på en markør for at starte en udfordring!", Toast.LENGTH_LONG).show();
-                    }
-                }
-            });
-
-
-            informationWindow.show();
         } else if(marker.getTitle().equals("Netto")){
             position = 2;
+            intent = new Intent(getActivity(), ChallengeTemplate.class);
             title.setText(titles[position]);
             info.setText(infoTexts[position]);
 
@@ -260,37 +221,28 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
                         startActivity(intent);
                         informationWindow.dismiss();
 
-                    }else {
-                        Toast.makeText(getActivity().getApplicationContext(), "Du skal gå tættere på en markør for at starte en udfordring!", Toast.LENGTH_LONG).show();
-                    }
-                }
-            });
-
-
-            informationWindow.show();
         } else if(marker.getTitle().equals("SkyLab")) {
             position = 3;
-            title.setText(titles[position]);
-            info.setText(infoTexts[position]);
-
-            startChallengeButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(myLocation.distanceTo(markerLoc) < 100){
-                        Intent intent = new Intent(getActivity(), ChallengeTemplate.class);
-                        startActivity(intent);
-                        informationWindow.dismiss();
-
-                    }else {
-                        Toast.makeText(getActivity().getApplicationContext(), "Du skal gå tættere på en markør for at starte en udfordring!", Toast.LENGTH_LONG).show();
-                    }
-                }
-            });
-
-
-            informationWindow.show();
+            intent = new Intent(getActivity(), ChallengeTemplate.class);
         }
+        title.setText(titles[position]);
+        info.setText(infoTexts[position]);
 
+        Intent finalIntent = intent;
+        startChallengeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(myLocation.distanceTo(markerLoc) < 10000000){
+                    startActivity(finalIntent);
+                    informationWindow.dismiss();
+
+                }else {
+                    Toast.makeText(getActivity().getApplicationContext(), "Du skal gå tættere på en markør for at starte en udfordring!", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        informationWindow.show();
 
 
         //Check if current location is 100 m away from marker
@@ -300,6 +252,22 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
 //            Toast.makeText(getActivity().getApplicationContext(), "Du skal gå tættere på en markør for at starte en udfordring!", Toast.LENGTH_LONG).show();
 //        }
         return true;
+    }
+
+    private Button createChallengeButton() {
+        Button startChallengeButton = new Button(getActivity());
+        startChallengeButton.setText("Start udfordringen!");
+        LinearLayout linearLayout = (LinearLayout) informationWindow.findViewById(R.id.generalLinearLayout);
+        LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        linearLayout.addView(startChallengeButton, params);
+        return startChallengeButton;
+    }
+
+    private void setupPopup() {
+        informationWindow.setContentView(R.layout.information_window);
+        title = (TextView) informationWindow.findViewById(R.id.titleTextView);
+        info = (TextView) informationWindow.findViewById(R.id.infoTextView);
+        informationWindow.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     }
 
 }
