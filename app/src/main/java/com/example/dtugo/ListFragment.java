@@ -62,7 +62,7 @@ public class ListFragment extends Fragment {
                 informationWindow.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 informationWindow.show();
                 Button testButton;
-                testButton = (Button) informationWindow.findViewById(R.id.resetButton);
+                /*testButton = (Button) informationWindow.findViewById(R.id.resetButton);
                 testButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -70,6 +70,8 @@ public class ListFragment extends Fragment {
                         startActivity(intent);
                     }
                 });
+
+                 */
             }
         });
 
