@@ -6,37 +6,40 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
-    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
+        android:screenOrientation="sensorPortrait"
 
         android:theme="@style/Theme.DTUGO">
-        <activity android:name=".MapActivity" />
+        <activity android:name=".challenges.RunActivity"></activity>
+        <activity android:name=".MapActivity" android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDLADfBcewKBrp5VlnWt8JKsK1hJPV2WKI"/>
+            android:value="AIzaSyDLADfBcewKBrp5VlnWt8JKsK1hJPV2WKI" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".challenges.SpinningChallenge" android:screenOrientation="portrait" ></activity>
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".challenges.ChallengeTemplate">
+        <activity android:name=".challenges.ChallengeTemplate" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".challenges.ResultActivity" />
+        <activity android:name=".challenges.ResultActivity" android:screenOrientation="portrait"/>
         <activity android:name=".challenges.GforceChallenge"/>
         <activity android:name=".challenges.StepCounterChallenge"/>
     </application>

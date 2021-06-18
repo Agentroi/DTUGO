@@ -14,6 +14,9 @@ import com.example.dtugo.R;
 public class ChallengeTemplate extends AppCompatActivity {
     private boolean counterIsRunning = false;
 
+    //new
+    private CountDownTimer challengeCounter;
+
         @Override
         protected void onCreate (Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
@@ -42,7 +45,7 @@ public class ChallengeTemplate extends AppCompatActivity {
 
                 onResume();
 
-                new CountDownTimer(5000, 1000) {
+                challengeCounter = new CountDownTimer(5000, 1000) {
 
                     public void onTick(long millisUntilFinished) {
                         counterButton.setText("" + millisUntilFinished / 1000);
@@ -74,9 +77,16 @@ public class ChallengeTemplate extends AppCompatActivity {
         }
     }
 
+
+    //new
     @Override
     public void onBackPressed() {
-        moveTaskToBack(true);
+        moveTaskToBack(false);
+
+        if(challengeCounter != null) {
+            challengeCounter.cancel();
+        }
+        finish();
     }
 
 
