@@ -26,20 +26,14 @@
 
         <activity android:name=".challenges.SpinningChallenge" android:screenOrientation="portrait" ></activity>
         <activity android:name=".MainActivity" android:screenOrientation="portrait">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".challenges.ChallengeTemplate" android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".challenges.ChallengeTemplate" android:screenOrientation="portrait"/>
         <activity android:name=".challenges.ResultActivity" android:screenOrientation="portrait"/>
         <activity android:name=".challenges.ChallengeDecibel" android:screenOrientation="portrait"/>
     </application>

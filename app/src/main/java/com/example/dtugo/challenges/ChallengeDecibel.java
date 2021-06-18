@@ -18,12 +18,16 @@ import androidx.core.content.ContextCompat;
 
 import com.example.dtugo.R;
 
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 
 public class ChallengeDecibel extends AppCompatActivity {
     private boolean counterIsRunning = false;
     private CountDownTimer challengeCounter;
     TextView mDecibelView;
+    TextView locationTitle;
+    TextView challengeTitle;
 
     MediaRecorder mediaRecorder;
     Thread textRunner;
@@ -38,6 +42,11 @@ public class ChallengeDecibel extends AppCompatActivity {
             getSupportActionBar().hide(); //hide the title bar
             setContentView(R.layout.activity_challengetemplate);
             mDecibelView = (TextView) findViewById(R.id.Parameter);
+            locationTitle = (TextView) findViewById(R.id.location_title);
+            challengeTitle = (TextView) findViewById(R.id.challenge_title);
+
+            locationTitle.setText("Sportsanlæg");
+            challengeTitle.setText("Råb højt!");
 
             if (ContextCompat.checkSelfPermission(this,
                     Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
