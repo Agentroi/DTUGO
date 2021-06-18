@@ -80,7 +80,7 @@ public class RunActivity extends AppCompatActivity {
 
                 onResume();
 
-                challengeCounter = new CountDownTimer(5000, 1000) {
+                challengeCounter = new CountDownTimer(10000, 1000) {
 
                     public void onTick(long millisUntilFinished) {
                         counterButton.setText("" + millisUntilFinished / 1000);

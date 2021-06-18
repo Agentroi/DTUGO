@@ -67,7 +67,7 @@ public class GforceChallenge extends AppCompatActivity {
 
                 onResume();
 
-                new CountDownTimer(12000, 1000) {
+                new CountDownTimer(10000, 1000) {
 
                     public void onTick(long millisUntilFinished) {
                         counterButton.setText("" + millisUntilFinished / 1000);
@@ -79,7 +79,7 @@ public class GforceChallenge extends AppCompatActivity {
                         Intent intent = new Intent(GforceChallenge.this, ResultActivity.class);
 
                         //Add sensor data in the putExtra method's value field
-                        intent.putExtra("result_key", textViewGforcemeter.getText() + " G");
+                        intent.putExtra("result_key", textViewGforcemeter.getText());
                         //counterIsRunning = false;
                         startActivity(intent);
                     }
@@ -92,7 +92,7 @@ public class GforceChallenge extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         GforceCounter = 0;
-        textViewGforcemeter.setText("G " + 0);
+        textViewGforcemeter.setText(0 + " G");
 
        if(counterIsRunning) {
             SM = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -106,7 +106,7 @@ public class GforceChallenge extends AppCompatActivity {
                    if (g > GforceCounter) {
                        GforceCounter = g;
                        DecimalFormat numberFormat = new DecimalFormat("#.00");
-                       textViewGforcemeter.setText("G " + numberFormat.format(GforceCounter));
+                       textViewGforcemeter.setText(numberFormat.format(GforceCounter)+ " G");
                    }
                    DecimalFormat numberFormat = new DecimalFormat("#.00");
 

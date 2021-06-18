@@ -125,11 +125,14 @@ public class ChallengeDecibel extends AppCompatActivity {
                 }
 
                 try {
+                    Thread.sleep(100);
                     mediaRecorder.start();
                 } catch (IllegalStateException ise) {
                     android.util.Log.e("[StartRecorder]","ISEception: " + android.util.Log.getStackTraceString(ise));
                 } catch (java.lang.SecurityException e) {
                     android.util.Log.e("[StartRecorder]","SecurityException: " + android.util.Log.getStackTraceString(e));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
     }

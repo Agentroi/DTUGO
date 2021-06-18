@@ -4,18 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".challenges.GforceChallenge"
-    android:background="@drawable/hammerkast">
+    android:background="@drawable/hammerkast"
+    tools:context=".challenges.GforceChallenge">
 
     <TextView
         android:id="@+id/location_titleGforce"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:text="@string/location_titleGforce"
-        android:textColor="@color/red"
+        android:layout_marginTop="76dp"
+        android:background="@color/trans_gray"
+        android:text="S-Huset"
+        android:textColor="@color/black"
         android:textSize="60dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,22 +25,37 @@
         android:id="@+id/CounterGforce"
         android:layout_width="293dp"
         android:layout_height="111dp"
-
         android:layout_marginBottom="71dp"
+        android:background="@color/red"
         android:text="START"
-        android:textColor="@color/red"
+        android:textColor="@color/white"
         android:textSize="71dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        android:id="@+id/infoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="240dp"
+        android:background="@color/trans_gray"
+        android:text="Swing din telefon så vildt du kan!"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/CounterGforce"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
         android:id="@+id/ParameterGforce"
         android:layout_width="wrap_content"
-        android:textColor="@color/red"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:background="@color/trans_gray"
         android:text="TextView"
+        android:textColor="@color/black"
         android:textSize="71dp"
         app:layout_constraintBottom_toTopOf="@+id/CounterGforce"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,15 +63,19 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textViewTitle"
+        android:id="@+id/challenge_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="G-force"
-        android:textColor="@color/red"
+        android:background="@color/trans_gray"
+        android:text="G-Force"
+        android:textColor="@color/black"
         android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="114dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.236" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

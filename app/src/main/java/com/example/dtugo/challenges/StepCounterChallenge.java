@@ -63,7 +63,7 @@ public class StepCounterChallenge extends AppCompatActivity {
 
                 onResume();
 
-                new CountDownTimer(20000, 1000) {
+                new CountDownTimer(10000, 1000) {
 
                     public void onTick(long millisUntilFinished) {
                         counterButton.setText("" + millisUntilFinished / 1000);

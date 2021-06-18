@@ -230,12 +230,12 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
             startChallengeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                         public void onClick(View v) {
-                            if (myLocation.distanceTo(markerLoc) < 10000000) {
+                            if (myLocation.distanceTo(markerLoc) < 50) {
                                 startActivity(finalIntent);
                                 informationWindow.dismiss();
 
                             } else {
-                                Toast.makeText(getActivity().getApplicationContext(), "Du skal gå tættere på en markør for at starte en udfordring!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity().getApplicationContext(), "Du skal gå tættere på en markør for at starte en udfordring!", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
