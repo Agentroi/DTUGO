@@ -39,6 +39,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.SphericalUtil;
 
 import java.util.List;
 import java.util.Locale;
@@ -111,6 +112,8 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
                 addMarker("SkyLab", 55.781458, 12.513410);
                 //Netto
                 addMarker("Netto", 55.783792, 12.524095);
+                //Sportsanlæg
+                addMarker("Sportsanlæg", 55.789182, 12.522744);
 
                 mMap.setOnMarkerClickListener(MapFragment.this::onMarkerClick);
             }
@@ -212,6 +215,9 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
             intent = new Intent(getActivity(), RunActivity.class);
         } else if(marker.getTitle().equals("SkyLab")) {
             position = 3;
+            intent = new Intent(getActivity(), ChallengeTemplate.class);
+        }else if(marker.getTitle().equals("Sportsanlæg")){
+            position = 4;
             intent = new Intent(getActivity(), ChallengeTemplate.class);
         }
             title.setText(titles[position]);

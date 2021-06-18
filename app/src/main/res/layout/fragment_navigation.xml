@@ -12,7 +12,7 @@
         android:layout_margin="7dp"
         android:layout_marginLeft="3.5dp"
         android:layout_weight="1"
-        android:text="Map View"
+        android:text="@string/map_button_text"
         android:background="@color/red"
         android:textColor="@color/white"/>
 
@@ -23,7 +23,7 @@
         android:layout_margin="7dp"
         android:layout_marginLeft="3.5dp"
         android:layout_weight="1"
-        android:text="List View"
+        android:text="@string/list_button_text"
         android:background="@color/red"
         android:textColor="@color/white"/>
 
