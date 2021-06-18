@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -29,7 +30,6 @@ public class RunActivity extends AppCompatActivity {
     LocationManager locationManager;
     private double distance;
     private CountDownTimer challengeCounter;
-
 
     @Override
     protected void onCreate (Bundle savedInstanceState){
@@ -60,6 +60,7 @@ public class RunActivity extends AppCompatActivity {
         if (getIntent().getBooleanExtra("EXIT", false)) {
             finish();
         }
+
 
         addListenerOnButton();
     }
@@ -106,6 +107,7 @@ public class RunActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+
         super.onResume();
         //register your sensorListener here
 
@@ -150,5 +152,6 @@ public class RunActivity extends AppCompatActivity {
 
         //Unregister your sensorListener here
         locationManager.removeUpdates(locationListener);
+
     }
 }
