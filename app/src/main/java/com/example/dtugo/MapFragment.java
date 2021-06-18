@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Toast;
 
+import com.example.dtugo.challenges.ChallengeDecibel;
 import com.example.dtugo.challenges.ChallengeTemplate;
 import com.example.dtugo.challenges.RunActivity;
 import com.example.dtugo.challenges.ResultActivity;
