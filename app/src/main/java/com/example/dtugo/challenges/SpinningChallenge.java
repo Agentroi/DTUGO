@@ -87,7 +87,6 @@ public class SpinningChallenge extends AppCompatActivity {
                     }
 
                     public void onFinish() {
-
                         counterIsRunning = false;
                         //counterButton.setText("done!");
                         Intent intent = new Intent(SpinningChallenge.this, ResultActivity.class);
