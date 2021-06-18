@@ -26,8 +26,6 @@ public class ChallengeDecibel extends AppCompatActivity {
     private boolean counterIsRunning = false;
     private CountDownTimer challengeCounter;
     TextView mDecibelView;
-    TextView locationTitle;
-    TextView challengeTitle;
 
     MediaRecorder mediaRecorder;
     Thread textRunner;
@@ -40,13 +38,8 @@ public class ChallengeDecibel extends AppCompatActivity {
         protected void onCreate (Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
             getSupportActionBar().hide(); //hide the title bar
-            setContentView(R.layout.activity_challengetemplate);
+            setContentView(R.layout.activity_decibel);
             mDecibelView = (TextView) findViewById(R.id.Parameter);
-            locationTitle = (TextView) findViewById(R.id.location_title);
-            challengeTitle = (TextView) findViewById(R.id.challenge_title);
-
-            locationTitle.setText("Sportsanlæg");
-            challengeTitle.setText("Råb højt!");
 
             if (ContextCompat.checkSelfPermission(this,
                     Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
