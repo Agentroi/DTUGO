@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Toast;
 
+import com.example.dtugo.challenges.ChallengeDecibel;
 import com.example.dtugo.challenges.ChallengeTemplate;
 import com.example.dtugo.challenges.GforceChallenge;
 import com.example.dtugo.challenges.RunActivity;
@@ -111,9 +112,11 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
                 //S-Huset
                 addMarker("S-Huset",55.7865393,12.5253112);
                 //Skylab
-                addMarker("SkyLab", 55.7814779,12.5112552);
+                addMarker("SkyLab", 55.781458, 12.513410);
                 //Netto
-                addMarker("Netto", 55.783776, 12.524045);
+                addMarker("Netto", 55.783792, 12.524095);
+                //Sportsanlæg
+                addMarker("Sportsanlæg", 55.789182, 12.522744);
 
                 mMap.setOnMarkerClickListener(MapFragment.this::onMarkerClick);
             }
@@ -216,6 +219,9 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
         } else if(marker.getTitle().equals("SkyLab")) {
             position = 3;
             intent = new Intent(getActivity(), StepCounterChallenge.class);
+        }else if(marker.getTitle().equals("Sportsanlæg")){
+            position = 4;
+            intent = new Intent(getActivity(), ChallengeDecibel.class);
         }
             title.setText(titles[position]);
             info.setText(infoTexts[position]);

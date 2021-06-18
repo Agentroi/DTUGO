@@ -30,9 +30,13 @@
         </item>
     </string-array>
 
+    <string name="result_title">Tillykke! Din score er:</string>
+    <string name="returnText">TILBAGE</string>
+    <string name="retry">PRØV IGEN</string>
+    <string name="map_button_text">Kort</string>
+    <string name="list_button_text">Lokationer</string>
     <string name="challenge_title">Skridttæller!</string>
     <string name="location_title">Skylab</string>
-    <string name="result_title">Wow! you managed:</string>
     <string name="location_titleGforce">S-Huset</string>
 
 
