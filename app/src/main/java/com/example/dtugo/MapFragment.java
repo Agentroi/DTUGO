@@ -39,7 +39,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.maps.android.SphericalUtil;
 
 import java.util.List;
 import java.util.Locale;
@@ -109,9 +108,9 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
                 //S-Huset
                 addMarker("S-Huset",55.7865393,12.5253112);
                 //Skylab
-                addMarker("SkyLab", 55.7814779,12.5112552);
+                addMarker("SkyLab", 55.781458, 12.513410);
                 //Netto
-                addMarker("Netto", 55.783776, 12.524045);
+                addMarker("Netto", 55.783792, 12.524095);
 
                 mMap.setOnMarkerClickListener(MapFragment.this::onMarkerClick);
             }
