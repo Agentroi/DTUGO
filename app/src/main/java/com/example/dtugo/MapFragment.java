@@ -57,7 +57,6 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
     private TextView info;
     private String[] titles;
     private String[] infoTexts;
-
     LocationManager locationManager;
 
 
@@ -109,7 +108,9 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
                 //Skylab
                 addMarker("SkyLab", 55.7814779,12.5112552);
                 //Netto
-                addMarker("Netto", 55.783832,12.5219749);
+                addMarker("Netto", 55.783792, 12.524095);
+                //Volleyball
+                addMarker("Sportsanlæg", 55.789182, 12.522744);
 
                 mMap.setOnMarkerClickListener(MapFragment.this::onMarkerClick);
             }
@@ -213,7 +214,12 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
         } else if(marker.getTitle().equals("SkyLab")) {
             position = 3;
             intent = new Intent(getActivity(), ChallengeTemplate.class);
+        } else if(marker.getTitle().equals("Sportsanlæg")){
+            position = 4;
+            intent = new Intent(getActivity(), ChallengeTemplate.class);
         }
+
+
         title.setText(titles[position]);
         info.setText(infoTexts[position]);
 
