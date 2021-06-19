@@ -21,9 +21,9 @@ public class NavigationFragment extends Fragment {
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!(fragmentManager.findFragmentById(R.id.fragment_container) instanceof MapFragment)){
-                MapFragment mapFragment = new MapFragment();
-                fragmentManager.beginTransaction().replace(R.id.fragment_container, mapFragment).commit();
+                if(!(fragmentManager.findFragmentById(R.id.fragment_container) instanceof DtuMapFragment)){
+                DtuMapFragment dtuMapFragment = new DtuMapFragment();
+                fragmentManager.beginTransaction().replace(R.id.fragment_container, dtuMapFragment).commit();
                 }
             }
         });
@@ -32,9 +32,9 @@ public class NavigationFragment extends Fragment {
         listButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!(fragmentManager.findFragmentById(R.id.fragment_container) instanceof ListFragment)) {
-                    ListFragment listFragment = new ListFragment();
-                    fragmentManager.beginTransaction().replace(R.id.fragment_container, listFragment).commit();
+                if(!(fragmentManager.findFragmentById(R.id.fragment_container) instanceof LocationListFragment)) {
+                    LocationListFragment locationListFragment = new LocationListFragment();
+                    fragmentManager.beginTransaction().replace(R.id.fragment_container, locationListFragment).commit();
                 }
             }
         });

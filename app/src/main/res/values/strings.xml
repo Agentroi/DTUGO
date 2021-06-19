@@ -35,9 +35,13 @@
 
     <string name="challenge_title">Challenge_title</string>
     <string name="location_title">Location_title</string>
+
     <string name="result_title">Tillykke! Din score er:</string>
     <string name="returnText">TILBAGE</string>
     <string name="retry">PRØV IGEN</string>
+    <string name="start">START</string>
+
     <string name="map_button_text">Kort</string>
     <string name="list_button_text">Lokationer</string>
+
 </resources>

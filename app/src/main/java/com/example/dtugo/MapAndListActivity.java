@@ -1,21 +1,14 @@
 package com.example.dtugo;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.media.MediaExtractor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.Window;
 import android.view.WindowManager;
 
-import java.io.IOException;
-
-public class MapActivity extends AppCompatActivity {
+public class MapAndListActivity extends AppCompatActivity {
 
     MediaPlayer mediaPlayer;
 
@@ -30,11 +23,11 @@ public class MapActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.activity_map);
+        setContentView(R.layout.activity_mapandlist);
         getSupportActionBar().hide();
 
         //Initialize fragment
-        Fragment fragment = new MapFragment();
+        Fragment fragment = new DtuMapFragment();
 
         //open fragment
         getSupportFragmentManager()

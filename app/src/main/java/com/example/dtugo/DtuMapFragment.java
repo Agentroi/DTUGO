@@ -7,14 +7,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
@@ -28,10 +25,8 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Toast;
 
 import com.example.dtugo.challenges.ChallengeDecibel;
-import com.example.dtugo.challenges.ChallengeTemplate;
 import com.example.dtugo.challenges.GforceChallenge;
 import com.example.dtugo.challenges.RunActivity;
-import com.example.dtugo.challenges.ResultActivity;
 import com.example.dtugo.challenges.StepCounterChallenge;
 import com.example.dtugo.challenges.SpinningChallenge;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -42,14 +37,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.maps.android.SphericalUtil;
-
-import java.util.List;
-import java.util.Locale;
 
 import static android.content.Context.LOCATION_SERVICE;
 
-public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickListener{
+public class DtuMapFragment extends Fragment implements GoogleMap.OnMarkerClickListener{
 
     private static final long POLLING_FREQ = 1000 * 5;
     private static final float MIN_DISTANCE = 3.0f;
@@ -65,11 +56,10 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
 
     LocationManager locationManager;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //initialize view
-        View view = inflater.inflate(R.layout.fragment_map, container, false);
+        View view = inflater.inflate(R.layout.fragment_dtumap, container, false);
 
         informationWindow = new Dialog(getActivity());
         titles = getResources().getStringArray(R.array.titles);
@@ -118,7 +108,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
                 //Sportsanlæg
                 addMarker("Sportsanlæg", 55.789182, 12.522744);
 
-                mMap.setOnMarkerClickListener(MapFragment.this::onMarkerClick);
+                mMap.setOnMarkerClickListener(DtuMapFragment.this::onMarkerClick);
             }
         });
 
@@ -200,7 +190,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
         markerLoc.setLongitude(markerLong);
 
         int position = 0;
-        Intent intent = new Intent(getActivity(), MapActivity.class);;
+        Intent intent = new Intent(getActivity(), MapAndListActivity.class);
 
         setupPopup();
         Button startChallengeButton = createChallengeButton();
