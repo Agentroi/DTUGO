@@ -13,6 +13,8 @@ import com.example.dtugo.R;
 
 public class ChallengeTemplate extends AppCompatActivity {
     private boolean counterIsRunning = false;
+
+    //new
     private CountDownTimer challengeCounter;
 
         @Override
@@ -75,10 +77,15 @@ public class ChallengeTemplate extends AppCompatActivity {
         }
     }
 
+
+    //new
     @Override
     public void onBackPressed() {
         moveTaskToBack(false);
-        challengeCounter.cancel();
+
+        if(challengeCounter != null) {
+            challengeCounter.cancel();
+        }
         finish();
     }
 

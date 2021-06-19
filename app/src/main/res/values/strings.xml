@@ -5,7 +5,11 @@
     <string name="reset">Reset</string>
     <string name="image">image</string>
     <string name="button">Button</string>
+    <string name="textview">TextView</string>
+    <string name="test">Test</string>
     <string name="_0">0</string>
+    <string name="todo" />
+    <string name="todolol">TODO</string>
 
     <string-array name="titles">
         <item>Biblioteket</item>
@@ -25,10 +29,15 @@
         </item>
         <item> Skylab er DTU’s nyeste og mest visionære projekt. På DTU Skylab bliver innovation og nytænkning sat i fokus. Gennem en spændende kombination af teknologier og talenter fra de forskellige felter på DTU, skabes en særlig kultur af læring og nytænkning for alle involverede.
         </item>
-        <item> Her er der en besrkivelse af Sportsanlægget</item>
+        <item> På DTU’s sportsanlæg finder du faciliteterne til at spille volleyball, fodbold, rugby og basketball. Her ligger mange af DTU’s klubber til og sportsanlægget bliver flittigt brugt til at træne de forskellige sportsgrene. Som studerende kan du melde dig ind i en af disse klubber og nyde godt af det sociale samvær og motion.
+        </item>
     </string-array>
 
     <string name="challenge_title">Challenge_title</string>
     <string name="location_title">Location_title</string>
-    <string name="result_title">Wow! you managed:</string>
+    <string name="result_title">Tillykke! Din score er:</string>
+    <string name="returnText">TILBAGE</string>
+    <string name="retry">PRØV IGEN</string>
+    <string name="map_button_text">Kort</string>
+    <string name="list_button_text">Lokationer</string>
 </resources>

@@ -27,8 +27,13 @@ import android.widget.TextView;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Toast;
 
+import com.example.dtugo.challenges.ChallengeDecibel;
 import com.example.dtugo.challenges.ChallengeTemplate;
+import com.example.dtugo.challenges.GforceChallenge;
+import com.example.dtugo.challenges.RunActivity;
 import com.example.dtugo.challenges.ResultActivity;
+import com.example.dtugo.challenges.StepCounterChallenge;
+import com.example.dtugo.challenges.SpinningChallenge;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -57,6 +62,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
     private TextView info;
     private String[] titles;
     private String[] infoTexts;
+
     LocationManager locationManager;
 
 
@@ -106,10 +112,10 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
                 //S-Huset
                 addMarker("S-Huset",55.7865393,12.5253112);
                 //Skylab
-                addMarker("SkyLab", 55.7814779,12.5112552);
+                addMarker("SkyLab", 55.781458, 12.513410);
                 //Netto
                 addMarker("Netto", 55.783792, 12.524095);
-                //Volleyball
+                //Sportsanlæg
                 addMarker("Sportsanlæg", 55.789182, 12.522744);
 
                 mMap.setOnMarkerClickListener(MapFragment.this::onMarkerClick);
@@ -201,46 +207,43 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
 
         if(marker.getTitle().equals("Biblioteket")){
             position = 0;
-            intent = new Intent(getActivity(), ChallengeTemplate.class);
+            intent = new Intent(getActivity(), SpinningChallenge.class);
 
         } else if(marker.getTitle().equals("S-Huset")){
             position = 1;
-            intent = new Intent(getActivity(), ChallengeTemplate.class);
+            intent = new Intent(getActivity(), GforceChallenge.class);
 
-        } else if(marker.getTitle().equals("Netto")){
+        } else if(marker.getTitle().equals("Netto")) {
             position = 2;
-            intent = new Intent(getActivity(), ChallengeTemplate.class);
-
+            intent = new Intent(getActivity(), RunActivity.class);
         } else if(marker.getTitle().equals("SkyLab")) {
             position = 3;
-            intent = new Intent(getActivity(), ChallengeTemplate.class);
-        } else if(marker.getTitle().equals("Sportsanlæg")){
+            intent = new Intent(getActivity(), StepCounterChallenge.class);
+        }else if(marker.getTitle().equals("Sportsanlæg")){
             position = 4;
-            intent = new Intent(getActivity(), ChallengeTemplate.class);
+            intent = new Intent(getActivity(), ChallengeDecibel.class);
         }
+            title.setText(titles[position]);
+            info.setText(infoTexts[position]);
 
+            Intent finalIntent = intent;
+            startChallengeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                        public void onClick(View v) {
+                            if (myLocation.distanceTo(markerLoc) < 50) {
+                                startActivity(finalIntent);
+                                informationWindow.dismiss();
 
-        title.setText(titles[position]);
-        info.setText(infoTexts[position]);
+                            } else {
+                                Toast.makeText(getActivity().getApplicationContext(), "Du skal gå tættere på en markør for at starte en udfordring!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
 
-        Intent finalIntent = intent;
-        startChallengeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(myLocation.distanceTo(markerLoc) < 10000000){
-                    startActivity(finalIntent);
-                    informationWindow.dismiss();
-
-                }else {
-                    Toast.makeText(getActivity().getApplicationContext(), "Du skal gå tættere på en markør for at starte en udfordring!", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-
-        informationWindow.show();
-
+                    informationWindow.show();
         return true;
     }
+
 
     private Button createChallengeButton() {
         Button startChallengeButton = new Button(getActivity());
@@ -259,3 +262,5 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
     }
 
 }
+
+

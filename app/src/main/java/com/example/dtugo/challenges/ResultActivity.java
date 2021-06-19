@@ -33,8 +33,10 @@ public class ResultActivity extends AppCompatActivity {
         Button returnButton = (Button) findViewById(R.id.return_button);
 
         retryButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+
                 finish();
             }
         });

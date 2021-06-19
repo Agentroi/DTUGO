@@ -5,45 +5,49 @@
     android:id="@+id/Counter"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".challenges.ChallengeTemplate">
+    android:background="@drawable/usain_bolt"
+    tools:context=".challenges.RunActivity">
 
 
     <TextView
         android:id="@+id/location_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/location_title"
-        android:textSize="60dp"
-        android:background="@color/gray"
+        android:background="@color/trans_gray"
+        android:text="Netto"
+        android:textColor="@color/black"
+        android:textSize="65dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.134" />
+        app:layout_constraintVertical_bias="0.141" />
 
     <TextView
         android:id="@+id/challenge_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/challenge_title"
-        android:textSize="25dp"
-        android:background="@color/gray"
+        android:background="@color/trans_gray"
+        android:text="Kapløb"
+        android:textColor="@color/black"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.258" />
+        app:layout_constraintVertical_bias="0.274" />
 
     <Button
         android:id="@+id/Counter1"
         android:layout_width="293dp"
         android:layout_height="111dp"
         android:layout_marginBottom="71dp"
-        android:text="START"
-        android:textSize="71dp"
         android:background="@color/red"
         android:textColor="@color/white"
+        android:text="START"
+        android:textSize="71dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -53,8 +57,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="TextView"
-        android:textSize="61dp"
+        android:background="@color/trans_gray"
+        android:gravity="center"
+        android:text="Hvor langt kan du løbe på 10 sekunder?"
+        android:textColor="@color/black"
+        android:textSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/Counter1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.479"
