@@ -221,7 +221,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
             intent = new Intent(getActivity(), StepCounterChallenge.class);
         }else if(marker.getTitle().equals("Sportsanlæg")){
             position = 4;
-            intent = new Intent(getActivity(), ChallengeTemplate.class);
+            intent = new Intent(getActivity(), ChallengeDecibel.class);
         }
             title.setText(titles[position]);
             info.setText(infoTexts[position]);

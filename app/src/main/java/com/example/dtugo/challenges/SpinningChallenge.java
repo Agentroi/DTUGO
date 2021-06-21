@@ -1,5 +1,7 @@
 package com.example.dtugo.challenges;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -12,8 +14,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.example.dtugo.R;
+
+import static com.example.dtugo.Notifications.CHANNEL_CHALLENGE_ID;
 
 public class SpinningChallenge extends AppCompatActivity {
     private boolean counterIsRunning = false;
@@ -40,6 +46,11 @@ public class SpinningChallenge extends AppCompatActivity {
 
     private CountDownTimer challengeCounter;
 
+    private boolean isPaused = false;
+    private boolean resultReady = false;
+    private Intent savedIntent;
+    private NotificationManagerCompat notificationManager;
+
         @Override
         protected void onCreate (Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -59,6 +70,8 @@ public class SpinningChallenge extends AppCompatActivity {
             if (getIntent().getBooleanExtra("EXIT", false)) {
                 finish();
             }
+
+            notificationManager = NotificationManagerCompat.from(this);
 
             addListenerOnButton();
         }
@@ -93,7 +106,13 @@ public class SpinningChallenge extends AppCompatActivity {
 
                         //Add sensor data in the putExtra method's value field
                         intent.putExtra("result_key", ""+count+" spins!");
-                        startActivity(intent);
+                        if (!isPaused) {
+                            startActivity(intent);
+                        } else {
+                            sendNotification(view);
+                            resultReady = true;
+                            savedIntent = intent;
+                        }
                     }
 
                 }.start();
@@ -173,6 +192,14 @@ public class SpinningChallenge extends AppCompatActivity {
             sensorManager.registerListener(sensorEventListenerAccelerometer, sensorAccelerometer, SensorManager.SENSOR_DELAY_FASTEST);
             sensorManager.registerListener(sensorEventListenerMagneticField, sensorMagneticField, SensorManager.SENSOR_DELAY_FASTEST);
         }
+
+        isPaused = false;
+
+        if (resultReady) {
+            resultReady = false;
+            startActivity(savedIntent);
+        }
+
         if (!counterIsRunning) {
             addListenerOnButton();
         }
@@ -180,12 +207,6 @@ public class SpinningChallenge extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        moveTaskToBack(false);
-
-        if(challengeCounter != null) {
-            challengeCounter.cancel();
-        }
-        finish();
     }
 
 
@@ -194,8 +215,25 @@ public class SpinningChallenge extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         //Unregister your sensorListener here
-        counterIsRunning = false;
+        isPaused = true;
         //sensorManager.unregisterListener(sensorEventListenerAccelerometer,sensorAccelerometer);
         //sensorManager.unregisterListener(sensorEventListenerMagneticField,sensorMagneticField);
+    }
+
+    public void sendNotification(View view) {
+
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+                new Intent(this, SpinningChallenge.class), PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_CHALLENGE_ID)
+                .setSmallIcon(R.drawable.ic_smiley)
+                .setContentTitle("Udfordring afsluttet")
+                .setContentText("Se dit resultat her")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .setContentIntent(contentIntent)
+                .build();
+
+        notificationManager.notify(1, notification);
     }
 }

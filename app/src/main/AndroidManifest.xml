@@ -18,14 +18,16 @@
         android:screenOrientation="sensorPortrait"
 
         android:theme="@style/Theme.DTUGO">
-        <activity android:name=".challenges.RunActivity"></activity>
+        <activity android:name=".challenges.RunActivity"
+            android:launchMode="singleTop"></activity>
         <activity android:name=".MapActivity" android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDLADfBcewKBrp5VlnWt8JKsK1hJPV2WKI" />
 
-        <activity android:name=".challenges.SpinningChallenge" android:screenOrientation="portrait" ></activity>
+        <activity android:name=".challenges.SpinningChallenge" android:screenOrientation="portrait"
+            android:launchMode="singleTop"></activity>
         <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,9 +39,12 @@
         <activity android:name=".challenges.ChallengeTemplate" android:screenOrientation="portrait"
             android:launchMode="singleTop"/>
         <activity android:name=".challenges.ResultActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".challenges.ChallengeDecibel" android:screenOrientation="portrait"/>
-        <activity android:name=".challenges.GforceChallenge"/>
-        <activity android:name=".challenges.StepCounterChallenge"/>
+        <activity android:name=".challenges.ChallengeDecibel" android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <activity android:name=".challenges.GforceChallenge"
+            android:launchMode="singleTop"/>
+        <activity android:name=".challenges.StepCounterChallenge"
+            android:launchMode="singleTop"/>
     </application>
 
 </manifest>

@@ -37,6 +37,7 @@ public class ChallengeTemplate extends AppCompatActivity {
                 finish();
             }
 
+            //new
             notificationManager = NotificationManagerCompat.from(this);
 
             addListenerOnButton();
@@ -91,12 +92,14 @@ public class ChallengeTemplate extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         //register your sensorListener here
+        //new
         isPaused = false;
 
         if (!counterIsRunning) {
             addListenerOnButton();
         }
 
+        //new
         if (resultReady) {
             resultReady = false;
             startActivity(savedIntent);
