@@ -28,14 +28,14 @@
             android:orientation="vertical"
             android:scrollbars="vertical"
             android:scrollbarAlwaysDrawVerticalTrack="true">
-    <TextView
-        android:id="@+id/infoTextView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
 
-        android:gravity="top"
-        android:text="@string/infoText"
-        android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/infoTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top"
+                android:text="@string/infoText"
+                android:textSize="20sp"/>
 
         </LinearLayout>
     </ScrollView>
