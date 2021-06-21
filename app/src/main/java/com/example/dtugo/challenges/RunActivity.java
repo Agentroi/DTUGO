@@ -38,11 +38,6 @@ public class RunActivity extends AppCompatActivity {
     private double distance;
     private CountDownTimer challengeCounter;
 
-    private boolean isPaused = false;
-    private boolean resultReady = false;
-    private Intent savedIntent;
-    private NotificationManagerCompat notificationManager;
-
     @Override
     protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -58,6 +53,14 @@ public class RunActivity extends AppCompatActivity {
         //Initialize location manager:
         locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
 
+        //Initialize location listener:
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                myCurrentLocation = location;
+            }
+        };
+
         //Initialize start location:
         myStartLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
@@ -65,7 +68,6 @@ public class RunActivity extends AppCompatActivity {
             finish();
         }
 
-        notificationManager = NotificationManagerCompat.from(this);
 
         addListenerOnButton();
     }
@@ -83,7 +85,7 @@ public class RunActivity extends AppCompatActivity {
                 counterButton.setEnabled(false);
                 counterIsRunning = true;
 
-                startSensor();
+                onResume();
 
                 challengeCounter = new CountDownTimer(10000, 1000) {
 
@@ -93,12 +95,6 @@ public class RunActivity extends AppCompatActivity {
                     }
 
                     public void onFinish() {
-                        if (myStartLocation == null) {
-                            Log.i("startLocation", "null");
-                        }
-                        if (myCurrentLocation == null) {
-                            Log.i("currentLocation", "null");
-                        }
                         distance = myStartLocation.distanceTo(myCurrentLocation);
                         String result = "" + (int) distance + " meter!";
 
@@ -108,14 +104,7 @@ public class RunActivity extends AppCompatActivity {
                         //Add sensor data in the putExtra method's value field
                         intent.putExtra("result_key", result);
                         counterIsRunning = false;
-                        stopSensor();
-                        if (!isPaused) {
-                            startActivity(intent);
-                        } else {
-                            sendNotification(view);
-                            resultReady = true;
-                            savedIntent = intent;
-                        }
+                        startActivity(intent);
                     }
 
                 }.start();
@@ -128,31 +117,7 @@ public class RunActivity extends AppCompatActivity {
 
         super.onResume();
         //register your sensorListener here
-        isPaused = false;
 
-        if (resultReady) {
-            resultReady = false;
-            startActivity(savedIntent);
-        }
-
-        if (!counterIsRunning) {
-            addListenerOnButton();
-        }
-
-    }
-
-    @Override
-    public void onBackPressed() {
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        isPaused = true;
-    }
-
-    public void startSensor() {
         //We check for permissions
         if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -162,21 +127,27 @@ public class RunActivity extends AppCompatActivity {
         //Initialize start location:
         myStartLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
-        //Initialize location listener:
-        locationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
-                myCurrentLocation = location;
-            }
-        };
-
+        if (!counterIsRunning) {
+            addListenerOnButton();
+        }
         if (null != locationManager.getProvider(LocationManager.GPS_PROVIDER)){
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, POLLING_FREQ, MIN_DISTANCE, locationListener);
         }
-
     }
 
-    public void stopSensor() {
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(false);
+        if(challengeCounter != null) {
+            challengeCounter.cancel();
+        }
+        finish();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
         //We check for permissions
         if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -184,26 +155,10 @@ public class RunActivity extends AppCompatActivity {
         }
 
         //Initialize start location:
-        //myStartLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        myStartLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
         //Unregister your sensorListener here
         locationManager.removeUpdates(locationListener);
-    }
 
-    public void sendNotification(View view) {
-
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-                new Intent(this, RunActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
-
-        Notification notification = new NotificationCompat.Builder(this, CHANNEL_CHALLENGE_ID)
-                .setSmallIcon(R.drawable.ic_smiley)
-                .setContentTitle("Udfordring afsluttet")
-                .setContentText("Se dit resultat her")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-                .setContentIntent(contentIntent)
-                .build();
-
-        notificationManager.notify(1, notification);
     }
 }
