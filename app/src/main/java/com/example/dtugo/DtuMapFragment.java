@@ -220,7 +220,7 @@ public class DtuMapFragment extends Fragment implements GoogleMap.OnMarkerClickL
             startChallengeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                         public void onClick(View v) {
-                            if (myLocation.distanceTo(markerLoc) < 50) {
+                            if (myLocation.distanceTo(markerLoc) < 1000000) {
                                 startActivity(finalIntent);
                                 informationWindow.dismiss();
 

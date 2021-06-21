@@ -1,6 +1,8 @@
 package com.example.dtugo.challenges;
 
 import android.Manifest;
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -9,6 +11,7 @@ import android.location.LocationManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,8 +19,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.example.dtugo.R;
+
+import static com.example.dtugo.Notifications.CHANNEL_CHALLENGE_ID;
 
 public class RunActivity extends AppCompatActivity {
     private static final long POLLING_FREQ = 500 ;

@@ -1,7 +1,11 @@
 package com.example.dtugo.challenges;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -17,9 +21,16 @@ import com.example.dtugo.R;
 
 import java.text.DecimalFormat;
 
+import static com.example.dtugo.Notifications.CHANNEL_CHALLENGE_ID;
+
 public class GforceChallenge extends AppCompatActivity {
 
     private TextView textViewGforcemeter;
+
+    private boolean isPaused = false;
+    private boolean resultReady = false;
+    private Intent savedIntent;
+    private NotificationManagerCompat notificationManager;
 
 
     private SensorManager SM;
@@ -49,6 +60,8 @@ public class GforceChallenge extends AppCompatActivity {
         if (getIntent().getBooleanExtra("EXIT", false)) {
             finish();
         }
+
+        notificationManager = NotificationManagerCompat.from(this);
 
         addListenerOnButton();
     }
@@ -81,7 +94,13 @@ public class GforceChallenge extends AppCompatActivity {
                         //Add sensor data in the putExtra method's value field
                         intent.putExtra("result_key", textViewGforcemeter.getText());
                         //counterIsRunning = false;
-                        startActivity(intent);
+                        if (!isPaused) {
+                            startActivity(intent);
+                        } else {
+                            sendNotification(view);
+                            resultReady = true;
+                            savedIntent = intent;
+                        }
                     }
                 }.start();
             }
@@ -120,26 +139,46 @@ public class GforceChallenge extends AppCompatActivity {
            SM.registerListener(sensorEventListenerGforce, sensorGforce, SensorManager.SENSOR_DELAY_FASTEST);
 
        }
+
+       isPaused = false;
+
+        if (resultReady) {
+            resultReady = false;
+            startActivity(savedIntent);
+        }
+
         if (!counterIsRunning) {
             addListenerOnButton();
         }
+
     }
 
     @Override
     public void onBackPressed() {
-        moveTaskToBack(false);
-
-        if(challengeCounter != null) {
-            challengeCounter.cancel();
-        }
-        finish();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        isPaused = true;
         counterIsRunning = false;
     }
 
+    public void sendNotification(View view) {
+
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+                new Intent(this, GforceChallenge.class), PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_CHALLENGE_ID)
+                .setSmallIcon(R.drawable.ic_smiley)
+                .setContentTitle("Udfordring afsluttet")
+                .setContentText("Se dit resultat her")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .setContentIntent(contentIntent)
+                .build();
+
+        notificationManager.notify(1, notification);
+    }
 
 }

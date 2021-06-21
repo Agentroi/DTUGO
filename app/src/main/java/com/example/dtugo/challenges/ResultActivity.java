@@ -1,6 +1,9 @@
 package com.example.dtugo.challenges;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,9 +16,11 @@ import com.example.dtugo.R;
 
 public class ResultActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (getIntent().getFlags() == Intent.FLAG_FROM_BACKGROUND) {
+            moveTaskToBack(true);
+        }
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_result);
