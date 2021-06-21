@@ -1,5 +1,7 @@
 package com.example.dtugo.challenges;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -8,13 +10,21 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.example.dtugo.R;
 
+import static com.example.dtugo.Notifications.CHANNEL_CHALLENGE_ID;
+
 public class ChallengeTemplate extends AppCompatActivity {
     private boolean counterIsRunning = false;
-
     //new
+    private boolean isPaused = false;
+    private boolean resultReady = false;
+    private Intent savedIntent;
+    private NotificationManagerCompat notificationManager;
+
     private CountDownTimer challengeCounter;
 
         @Override
@@ -26,6 +36,8 @@ public class ChallengeTemplate extends AppCompatActivity {
             if (getIntent().getBooleanExtra("EXIT", false)) {
                 finish();
             }
+
+            notificationManager = NotificationManagerCompat.from(this);
 
             addListenerOnButton();
         }
@@ -59,7 +71,15 @@ public class ChallengeTemplate extends AppCompatActivity {
                         //Add sensor data in the putExtra method's value field
                         intent.putExtra("result_key", "sensor_data");
                         counterIsRunning = false;
-                        startActivity(intent);
+                        //new
+                        if (!isPaused) {
+                            startActivity(intent);
+                        } else {
+                            sendNotification(view);
+                            resultReady = true;
+                            savedIntent = intent;
+                        }
+
                     }
 
                 }.start();
@@ -71,29 +91,49 @@ public class ChallengeTemplate extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         //register your sensorListener here
+        isPaused = false;
 
         if (!counterIsRunning) {
             addListenerOnButton();
         }
+
+        if (resultReady) {
+            resultReady = false;
+            startActivity(savedIntent);
+        }
     }
 
 
-    //new
     @Override
     public void onBackPressed() {
-        moveTaskToBack(false);
-
-        if(challengeCounter != null) {
-            challengeCounter.cancel();
-        }
-        finish();
+            //new (empty)
     }
-
-
 
     @Override
     protected void onPause() {
         super.onPause();
         //Unregister your sensorListener here
+
+        //new
+        isPaused = true;
     }
+
+    //new
+    public void sendNotification(View view) {
+
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+                new Intent(this, ChallengeTemplate.class), PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_CHALLENGE_ID)
+                .setSmallIcon(R.drawable.ic_smiley)
+                .setContentTitle("Udfordring afsluttet")
+                .setContentText("Se dit resultat her")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .setContentIntent(contentIntent)
+                .build();
+
+        notificationManager.notify(1, notification);
+    }
+
 }

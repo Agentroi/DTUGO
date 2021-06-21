@@ -221,7 +221,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
             intent = new Intent(getActivity(), StepCounterChallenge.class);
         }else if(marker.getTitle().equals("Sportsanlæg")){
             position = 4;
-            intent = new Intent(getActivity(), ChallengeDecibel.class);
+            intent = new Intent(getActivity(), ChallengeTemplate.class);
         }
             title.setText(titles[position]);
             info.setText(infoTexts[position]);
@@ -230,7 +230,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickList
             startChallengeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                         public void onClick(View v) {
-                            if (myLocation.distanceTo(markerLoc) < 50) {
+                            if (myLocation.distanceTo(markerLoc) < 1000000) {
                                 startActivity(finalIntent);
                                 informationWindow.dismiss();
 
