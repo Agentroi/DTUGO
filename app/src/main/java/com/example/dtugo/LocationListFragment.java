@@ -1,8 +1,6 @@
 package com.example.dtugo;
 
 import android.app.Dialog;
-import android.app.ListActivity;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -13,17 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.example.dtugo.challenges.SpinningChallenge;
-
-public class ListFragment extends Fragment {
+public class LocationListFragment extends Fragment {
     private Dialog informationWindow;
     private TextView title;
     private TextView info;
@@ -32,7 +23,7 @@ public class ListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_locationlist, container, false);
 
         titles = getResources().getStringArray(R.array.titles);
         infoTexts = getResources().getStringArray(R.array.infoTexts);
@@ -42,7 +33,7 @@ public class ListFragment extends Fragment {
 
         ListView listView = view.findViewById(R.id.list);
 
-        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
                 titles
@@ -61,17 +52,6 @@ public class ListFragment extends Fragment {
                 info.setText(infoTexts[position]);
                 informationWindow.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 informationWindow.show();
-                Button testButton;
-                /*testButton = (Button) informationWindow.findViewById(R.id.resetButton);
-                testButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(), SpinningChallenge.class);
-                        startActivity(intent);
-                    }
-                });
-
-                 */
             }
         });
 

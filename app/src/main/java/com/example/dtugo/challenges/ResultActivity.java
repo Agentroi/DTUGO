@@ -1,6 +1,9 @@
 package com.example.dtugo.challenges;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,16 +11,16 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.dtugo.MainActivity;
-import com.example.dtugo.MapActivity;
+import com.example.dtugo.MapAndListActivity;
 import com.example.dtugo.R;
-import com.example.dtugo.challenges.ChallengeTemplate;
 
 public class ResultActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (getIntent().getFlags() == Intent.FLAG_FROM_BACKGROUND) {
+            moveTaskToBack(true);
+        }
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_result);
@@ -46,7 +49,7 @@ public class ResultActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Replace MainActivity with the MapActivity/Main activity in DTU-GO
                 //https://stackoverflow.com/questions/14001963/finish-all-activities-at-a-time
-                Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MapAndListActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("EXIT", true);
                 startActivity(intent);

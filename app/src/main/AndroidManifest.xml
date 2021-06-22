@@ -7,8 +7,10 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
 
     <application
+        android:name=".Notifications"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
@@ -17,14 +19,16 @@
         android:screenOrientation="sensorPortrait"
 
         android:theme="@style/Theme.DTUGO">
-        <activity android:name=".challenges.RunActivity"></activity>
-        <activity android:name=".MapActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".challenges.RunActivity"
+            android:launchMode="singleTop"></activity>
+        <activity android:name=".MapAndListActivity" android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDLADfBcewKBrp5VlnWt8JKsK1hJPV2WKI" />
 
-        <activity android:name=".challenges.SpinningChallenge" android:screenOrientation="portrait" ></activity>
+        <activity android:name=".challenges.SpinningChallenge" android:screenOrientation="portrait"
+            android:launchMode="singleTop"></activity>
         <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,11 +37,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".challenges.ChallengeTemplate" android:screenOrientation="portrait"/>
+        <activity android:name=".challenges.ChallengeTemplate" android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
         <activity android:name=".challenges.ResultActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".challenges.ChallengeDecibel" android:screenOrientation="portrait"/>
-        <activity android:name=".challenges.GforceChallenge"/>
-        <activity android:name=".challenges.StepCounterChallenge"/>
+        <activity android:name=".challenges.ChallengeDecibel" android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <activity android:name=".challenges.GforceChallenge"
+            android:launchMode="singleTop"/>
+        <activity android:name=".challenges.StepCounterChallenge"
+            android:launchMode="singleTop"/>
     </application>
 
 </manifest>

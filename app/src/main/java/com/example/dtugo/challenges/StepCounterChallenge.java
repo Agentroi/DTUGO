@@ -1,7 +1,11 @@
 package com.example.dtugo.challenges;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Context;
 
 import android.content.Intent;
@@ -18,6 +22,8 @@ import android.widget.TextView;
 
 import com.example.dtugo.R;
 
+import static com.example.dtugo.Notifications.CHANNEL_CHALLENGE_ID;
+
 public class StepCounterChallenge extends AppCompatActivity {
     private boolean counterIsRunning = false;
 
@@ -26,6 +32,11 @@ public class StepCounterChallenge extends AppCompatActivity {
     private SensorManager sensorManager;
     private Sensor sensorStepCounter;
     private SensorEventListener sensorEventListenerStepCounter;
+
+    private boolean isPaused = false;
+    private boolean resultReady = false;
+    private Intent savedIntent;
+    private NotificationManagerCompat notificationManager;
 
     private CountDownTimer challengeCounter;
     int stepCounter = 0;
@@ -45,6 +56,9 @@ public class StepCounterChallenge extends AppCompatActivity {
         if (getIntent().getBooleanExtra("EXIT", false)) {
             finish();
         }
+
+        notificationManager = NotificationManagerCompat.from(this);
+
         addListenerOnButton();
     }
 
@@ -76,7 +90,13 @@ public class StepCounterChallenge extends AppCompatActivity {
 
                         //Add sensor data in the putExtra method's value field
                         intent.putExtra("result_key", "" + stepCounter);
-                        startActivity(intent);
+                        if (!isPaused) {
+                            startActivity(intent);
+                        } else {
+                            sendNotification(view);
+                            resultReady = true;
+                            savedIntent = intent;
+                        }
                     }
                 }.start();
             }
@@ -88,6 +108,7 @@ public class StepCounterChallenge extends AppCompatActivity {
         super.onResume();
         stepCounter = 0;
         textViewStepCounter.setText("" + 0);
+        isPaused = false;
 
         if (counterIsRunning) {
             sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -109,6 +130,12 @@ public class StepCounterChallenge extends AppCompatActivity {
 
             sensorManager.registerListener(sensorEventListenerStepCounter, sensorStepCounter, SensorManager.SENSOR_DELAY_FASTEST);
         }
+
+        if (resultReady) {
+            resultReady = false;
+            startActivity(savedIntent);
+        }
+
         if (!counterIsRunning) {
             addListenerOnButton();
         }
@@ -116,20 +143,28 @@ public class StepCounterChallenge extends AppCompatActivity {
 
     @Override
     public void onBackPressed () {
-        moveTaskToBack(false);
-
-        if (challengeCounter != null) {
-            challengeCounter.cancel();
-        }
-        finish();
     }
 
     @Override
     protected void onPause () {
         super.onPause();
-        counterIsRunning = false;
-
+        isPaused = true;
     }
 
+    public void sendNotification(View view) {
 
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+                new Intent(this, StepCounterChallenge.class), PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_CHALLENGE_ID)
+                .setSmallIcon(R.drawable.ic_smiley)
+                .setContentTitle("Udfordring afsluttet")
+                .setContentText("Se dit resultat her")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .setContentIntent(contentIntent)
+                .build();
+
+        notificationManager.notify(1, notification);
+    }
 }
